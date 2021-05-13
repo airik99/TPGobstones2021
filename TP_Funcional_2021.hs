@@ -9,18 +9,58 @@ Cabezal: Este siempre se encuentra en una celda del tablero, a la que llamaremos
          - Sacar una bolita de un color.
 
 Las bolitas pueden ser de alguno de estos colores: rojo, azul, verde o negro. -}
-type Tablero = [Celda]
+--PUNTO 1
+type Tablero = [Celda] 
 
 type Posicion = (Int, Int)
 
-type Celda = ((Int, Bolita), (Int, Bolita), (Int, Bolita), (Int, Bolita), Posicion)
+type Celda = (Posicion, [Bolita]) 
 
 type Cabezal = (Int, Int)
 
-data Direccion = Norte | Sur | Este | Oeste deriving (Show)
+data Direccion = Norte | Sur | Este | Oeste deriving (Show) -- esto es para el cabezal
 
-data Bolita = Rojo | Negro | Azul | Verde deriving (Show)
+data Bolita = Bolita {
+    cantidad :: Int,
+    color :: String
+} deriving (Show)
 
+--PUNTO 2
+
+inicializarTablero :: Int -> Int -> Tablero
+inicializarTablero fila columna = armarTablero [1..fila] [1..columna]
+
+cabezal = (1, 1) -- inicia con el programa? que pasa si creo otro tablero?
+
+armarTablero :: [Int] -> [Int] -> Tablero 
+armarTablero xs ys = [((x, y), []) | x <- xs, y <- ys] 
+
+--productoCartesiano :: [a] -> [b] -> [(a, b)]
+--productoCartesiano xs ys = [(x,y) | x <- xs, y <- ys]
+
+--tableroPruebas = [(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)]
+{-
+
+type Filas = Int
+type Columnas = Int
+
+type Dimension = (Filas, Columnas)
+
+(4,4)
+[1..colum][1..fila]
+
+hacemos otra funcion
+
+doble lista, matriz, la posicion queda implicita
+esta seria una matriz de 2x3
+[
+  [(1, 1), (2, 1), (3, 1)],
+  [(1, 2), (2, 2), (3, 2)]|
+] 
+
+ [(1, 1), (2, 1), (3, 1), (1, 2), ...]  la posicion no queda implicita, una lista
+
+ -}
 -- celda = [(1, rojo)] ++ [(1, azul)]
 --x:y:xs
 --         Ancho   Alto
@@ -40,4 +80,7 @@ moverCabezal :: Direccion -> Tablero -> Tablero
 agregarBolita :: Bolita -> Tablero -> Tablero
 
 -- 
-sacarBolita :: Bolita -> Tablero -> Tablero -} 
+sacarBolita :: Bolita -> Tablero -> Tablero 
+
+
+-} 
